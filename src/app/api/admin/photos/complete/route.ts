@@ -1,0 +1,5 @@
+import { NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { slugify } from "@/lib/slug";
+export async function POST(req:Request){try{await requireAdmin();const b=await req.json();let category=await prisma.category.findUnique({where:{slug:slugify(b.category)}});if(!category) category=await prisma.category.create({data:{name:b.category,slug:slugify(b.category)}});const base=slugify(b.title);const slug=`${base}-${Date.now()}`;const publicBase=process.env.S3_PUBLIC_BASE_URL?.replace(/\/$/,"");const previewUrl=publicBase?`${publicBase}/${b.previewStorageKey}`:b.previewStorageKey;const photo=await prisma.photo.create({data:{title:b.title,slug,description:b.description||null,priceCents:Number(b.priceCents),status:"PUBLISHED",categoryId:category.id,previewStorageKey:previewUrl,originalStorageKey:b.originalStorageKey}});return NextResponse.json({id:photo.id});}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Could not create photo"},{status:400});}}
