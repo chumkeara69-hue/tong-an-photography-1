@@ -80,7 +80,6 @@ model Photo {
   priceCents         Int
   status             PhotoStatus @default(DRAFT)
   categoryId         String 
-
   previewStorageKey  String
   originalStorageKey String
   createdAt          DateTime    @default(now())
