@@ -61,7 +61,7 @@ export default async function Home() {
           {photos.map((p) => (
             <Link
               key={p.id}
-              href={`/photos/${p.slug}`}
+              href={"/photos/" + p.slug}
               className="card photo-card"
             >
               <img src={p.previewStorageKey} alt={p.title} />
