@@ -66,7 +66,7 @@ export default async function Home() {
               <div className="photo-info">
                 <div>
                   <div className="photo-title">{p.title}</div>
-                  <small>{p.category.name}</small>
+                 <small>{p.categoryId}</small>
                 </div>
 
                 <div className="price">
