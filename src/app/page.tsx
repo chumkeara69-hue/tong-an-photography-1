@@ -1,3 +1,4 @@
+```tsx
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
@@ -6,7 +7,6 @@ export default async function Home() {
     where: { status: "PUBLISHED" },
     orderBy: { createdAt: "desc" },
     take: 8,
-    include: { category: true },
   });
 
   return (
@@ -15,11 +15,13 @@ export default async function Home() {
         <div className="container hero-inner">
           <div>
             <p className="eyebrow">TONG AN PHOTOGRAPHY</p>
+
             <h1>
               Capture the Beauty.
               <br />
               Preserve the Moment.
             </h1>
+
             <p className="lead">
               Original photography, beautiful Cambodian moments, and
               high-quality licensed downloads.
@@ -66,7 +68,7 @@ export default async function Home() {
               <div className="photo-info">
                 <div>
                   <div className="photo-title">{p.title}</div>
-                 <small>{p.categoryId}</small>
+                  <small>{p.categoryId}</small>
                 </div>
 
                 <div className="price">
@@ -80,3 +82,4 @@ export default async function Home() {
     </main>
   );
 }
+```
