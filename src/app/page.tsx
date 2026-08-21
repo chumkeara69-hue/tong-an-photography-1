@@ -7,6 +7,7 @@ export default async function Home() {
     where: { status: "PUBLISHED" },
     orderBy: { createdAt: "desc" },
     take: 8,
+    include: { category: true },
   });
 
   return (
@@ -68,7 +69,7 @@ export default async function Home() {
               <div className="photo-info">
                 <div>
                   <div className="photo-title">{p.title}</div>
-                  <small>{p.categoryId}</small>
+                  <small>{p.category.name}</small>
                 </div>
 
                 <div className="price">
@@ -83,4 +84,3 @@ export default async function Home() {
   );
 }
 ```
-
