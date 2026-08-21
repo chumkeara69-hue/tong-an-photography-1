@@ -79,7 +79,8 @@ model Photo {
   description        String?
   priceCents         Int
   status             PhotoStatus @default(DRAFT)
-  categoryId         String
+  categoryId         String 
+  category Category @relation(fields: [categoryId], references: [id])
   previewStorageKey  String
   originalStorageKey String
   createdAt          DateTime    @default(now())
